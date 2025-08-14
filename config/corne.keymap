@@ -49,18 +49,18 @@
 
         rh_num {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &kp LS(STAR)  &kp N7  &kp N8  &kp N9  &trans     &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &kp LS(PLUS)  &kp N4  &kp N5  &kp N6  &kp MINUS  &kp EQUAL
-&trans  &trans  &trans  &trans  &trans  &trans    &kp N         &kp N1  &kp N2  &kp N3  &kp DOT    &kp FSLH
+&trans  &trans  &trans  &trans  &trans  &trans    &kp LS(STAR)  &kp N7  &kp N8  &kp N9  &kp EQUAL  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &kp LS(PLUS)  &kp N4  &kp N5  &kp N6  &kp MINUS  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &kp N         &kp N1  &kp N2  &kp N3  &kp DOT    &trans
                         &trans  &trans  &trans    &trans        &trans  &kp N0
             >;
         };
 
         lh_sym {
             bindings = <
-&trans  &kp LS(AT)     &kp LS(LBRC)   &kp LS(RBRC)  &kp LS(UNDER)  &kp LS(UNDER)    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp LS(POUND)  &kp LS(DLLR)   &kp LS(LPAR)  &kp LS(RPAR)   &kp GRAVE        &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp EQUAL      &kp LS(PRCNT)  &kp LBKT      &kp RBKT       &kp LS(TILDE)    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LS(AT)     &kp LS(LBRC)   &kp LS(RBRC)  &kp LS(UNDER)  &kp LS(UNDER)    &trans  &trans  &trans  &trans  &kp NON_US_BACKSLASH    &trans
+&trans  &kp LS(POUND)  &kp LS(DLLR)   &kp LS(LPAR)  &kp LS(RPAR)   &kp GRAVE        &trans  &trans  &trans  &trans  &hld_tp LEFT_SHIFT SQT  &trans
+&trans  &kp EQUAL      &kp LS(PRCNT)  &kp LBKT      &kp RBKT       &kp LS(TILDE)    &trans  &trans  &trans  &trans  &trans                  &trans
                                       &trans        &trans         &trans           &trans  &trans  &trans
             >;
         };
