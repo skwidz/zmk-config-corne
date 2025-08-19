@@ -59,9 +59,9 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&none  &kp Q                   &kp W  &kp E     &kp R                   &kp T        &kp Y                       &kp U     &kp I      &kp O    &kp P                   &none
-&none  &hld_tp LEFT_SHIFT A    &kp S  &hrl 3 D  &hrl 1 F                &kp G        &kp H                       &hrl 2 J  &hrl 4 K   &kp L    &hld_tp LEFT_SHIFT SQT  &none
-&none  &hld_tp LEFT_COMMAND Z  &kp X  &kp C     &kp V                   &kp B        &kp N                       &kp M     &kp COMMA  &kp DOT  &hld_tp LCTRL SLASH     &none
+&none  &kp Q                   &kp W  &kp E     &kp R                   &kp T        &kp Y                       &kp U     &kp I      &kp O    &kp P                    &none
+&none  &hld_tp LEFT_SHIFT A    &kp S  &hrl 3 D  &hrl 1 F                &kp G        &kp H                       &hrl 2 J  &hrl 4 K   &kp L    &hld_tp LEFT_SHIFT SEMI  &none
+&none  &hld_tp LEFT_COMMAND Z  &kp X  &kp C     &kp V                   &kp B        &kp N                       &kp M     &kp COMMA  &kp DOT  &hld_tp LCTRL SLASH      &none
                                       &kp TAB   &mt LEFT_ALT BACKSPACE  &kp SPACE    &hld_tp LEFT_COMMAND ENTER  &kp LALT  &kp ESC
             >;
         };
@@ -77,9 +77,9 @@
 
         lh_sym {
             bindings = <
-&trans  &kp LS(EXCLAMATION)  &kp LS(AT_SIGN)  &kp LS(LEFT_BRACE)  &kp LS(RIGHT_BRACE)  &kp LS(UNDER)    &trans  &trans  &trans  &trans  &kp NON_US_BACKSLASH          &trans
-&trans  &kp LS(POUND)        &kp LS(DLLR)     &kp LS(LPAR)        &kp LS(RPAR)         &kp GRAVE        &trans  &trans  &trans  &trans  &hld_tp LEFT_SHIFT SEMICOLON  &trans
-&trans  &kp EQUAL            &kp LS(PRCNT)    &kp LBKT            &kp RBKT             &kp LS(TILDE)    &trans  &trans  &trans  &trans  &trans                        &trans
+&trans  &kp LS(EXCLAMATION)  &kp LS(AT_SIGN)  &kp LS(LEFT_BRACE)  &kp LS(RIGHT_BRACE)  &kp LS(UNDER)    &trans  &trans  &trans  &trans  &kp NON_US_BACKSLASH             &trans
+&trans  &kp LS(POUND)        &kp LS(DLLR)     &kp LS(LPAR)        &kp LS(RPAR)         &kp GRAVE        &trans  &trans  &trans  &trans  &hld_tp LEFT_SHIFT SINGLE_QUOTE  &trans
+&trans  &kp EQUAL            &kp LS(PRCNT)    &kp LBKT            &kp RBKT             &kp LS(TILDE)    &trans  &trans  &trans  &trans  &trans                           &trans
                                               &trans              &trans               &trans           &trans  &trans  &trans
             >;
         };
