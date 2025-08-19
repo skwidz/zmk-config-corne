@@ -44,7 +44,7 @@
 
         studio_unlock {
             bindings = <&studio_unlock>;
-            key-positions = <1 25 10 34>;
+            key-positions = <1 10 29 30>;
         };
     };
 
@@ -102,12 +102,8 @@
             >;
         };
 
-         extra1 {
-            status = "reserved";
-        };
+        extra1 { status = "reserved"; };
 
-        extra2 {
-            status = "reserved";
-        };
+        extra2 { status = "reserved"; };
     };
 };
