@@ -1,0 +1,14 @@
+{
+  "shortcuts": {
+    "bindings": {
+      "selectSurfaceByNumber": "ctrl+1",
+      "prevSurface": "cmd+shift+[",
+      "nextSurface": "cmd+shift+]",
+      "focusPreviousPane": "cmd+ctrl+opt+left",
+      "focusNextPane": "cmd+ctrl+opt+right",
+      "selectWorkspaceByNumber": "cmd+1",
+      "prevSidebarTab": "cmd+ctrl+[",
+      "nextSidebarTab": "cmd+ctrl+]"
+    }
+  }
+}
