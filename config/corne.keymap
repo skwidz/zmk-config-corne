@@ -10,12 +10,6 @@
 #include <dt-bindings/zmk/pointing.h>
 
 #define CMUX 7
-#define CMUX_TAB_HELD 8
-#define CMUX_TILE_HELD 9
-#define CMUX_WORKSPACE_HELD 10
-#define CMUX_TAB_CYCLE 11
-#define CMUX_TILE_CYCLE 12
-#define CMUX_WORKSPACE_CYCLE 13
 
 / {
     behaviors {
@@ -25,22 +19,6 @@
             bindings = <&mo>, <&kp>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-        };
-
-        cmux_pinky: cmux_pinky_layer_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&mo>, <&kp>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <150>;
-        };
-
-        cmux_tile_pinky: cmux_tile_pinky_hold {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&mo>, <&none>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <150>;
         };
 
         hrl: homerow_layer {
@@ -71,24 +49,6 @@
             #binding-cells = <2>;
             tapping-term-ms = <150>;
             hold-trigger-key-positions = <16 15 14 13 12 18 19 20 21 22 23 17>;
-        };
-    };
-
-    // Gate cycle overlays on S as well as the pinky. Releasing S must disable
-    // navigation immediately, even when a pinky is still held.
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tab_cycle {
-            if-layers = <CMUX CMUX_TAB_HELD>;
-            then-layer = <CMUX_TAB_CYCLE>;
-        };
-        tile_cycle {
-            if-layers = <CMUX CMUX_TILE_HELD>;
-            then-layer = <CMUX_TILE_CYCLE>;
-        };
-        workspace_cycle {
-            if-layers = <CMUX CMUX_WORKSPACE_HELD>;
-            then-layer = <CMUX_WORKSPACE_CYCLE>;
         };
     };
 
@@ -189,69 +149,14 @@
         };
 
         cmux {
-            // Y U I O P: tabs 1-5 (Ctrl+number).
-            // H J K L ;: direct tile selection is unavailable in native cmux.
-            // N M , . /: workspaces 1-5 (Cmd+number).
-            // Pinky tap selects 5; pinky hold enables that row's cycle overlay.
+            // U/J/M: next tab/tile/workspace; I/K/COMMA: previous.
+            // Y/O/P: tabs 1/4/5; N/DOT/SLASH: workspaces 1/4/5.
+            // No pinky hold actions or additional navigation layers.
             bindings = <
-&none  &none  &none   &none  &none  &none    &kp LC(N1)  &kp LC(N2)  &kp LC(N3)  &kp LC(N4)  &cmux_pinky CMUX_TAB_HELD LC(N5)        &none
-&none  &none  &trans  &none  &none  &none    &none       &none       &none       &none       &cmux_tile_pinky CMUX_TILE_HELD 0       &none
-&none  &none  &none   &none  &none  &none    &kp LG(N1)  &kp LG(N2)  &kp LG(N3)  &kp LG(N4)  &cmux_pinky CMUX_WORKSPACE_HELD LG(N5)  &none
+&none  &none  &none   &none  &none  &none    &kp LC(N1)  &kp LG(LS(RBKT))      &kp LG(LS(LBKT))     &kp LC(N4)  &kp LC(N5)  &none
+&none  &none  &trans  &none  &none  &none    &none       &kp LG(LC(LA(RIGHT))) &kp LG(LC(LA(LEFT))) &none       &none       &none
+&none  &none  &none   &none  &none  &none    &kp LG(N1)  &kp LG(LC(RBKT))      &kp LG(LC(LBKT))     &kp LG(N4)  &kp LG(N5)  &none
                             &none  &none  &none    &none  &none  &none
-            >;
-        };
-
-        cmux_tab_held {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-                     &trans &trans &trans    &trans &trans &trans
-            >;
-        };
-
-        cmux_tile_held {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-                     &trans &trans &trans    &trans &trans &trans
-            >;
-        };
-
-        cmux_workspace_held {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-                     &trans &trans &trans    &trans &trans &trans
-            >;
-        };
-
-        cmux_tab_cycle {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans &kp LG(LS(LBKT)) &kp LG(LS(RBKT)) &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans           &trans           &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans           &trans           &trans &trans &trans
-                     &trans &trans &trans    &trans &trans &trans
-            >;
-        };
-
-        cmux_tile_cycle {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans &trans                &trans                 &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &kp LG(LC(LA(LEFT))) &kp LG(LC(LA(RIGHT))) &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans                &trans                 &trans &trans &trans
-                     &trans &trans &trans    &trans &trans &trans
-            >;
-        };
-
-        cmux_workspace_cycle {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans &trans           &trans           &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans           &trans           &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &kp LG(LC(LBKT)) &kp LG(LC(RBKT)) &trans &trans &trans
-                     &trans &trans &trans    &trans &trans &trans
             >;
         };
     };

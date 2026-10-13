@@ -8,21 +8,19 @@ force S into a hold, protecting ordinary typing rolls.
 
 While S is held:
 
-| Row | Direct selection | Hold pinky + previous / next |
+| Row | Direct selection | Next / previous (no pinky needed) |
 | --- | --- | --- |
-| Y U I O P | Tabs 1–5 in the focused tile | P + U / I |
-| H J K L ; | Unassigned: cmux has no native numbered tile shortcuts | ; + J / K |
-| N M , . / | Sidebar workspaces 1–5 | / + M / , |
+| Y U I O P | Y / O / P: tabs 1 / 4 / 5 in the focused tile | U / I |
+| H J K L ; | Unassigned: cmux has no native numbered tile shortcuts | J / K |
+| N M , . / | `N`, `.`, `/`: sidebar workspaces 1, 4, 5 | M / , |
 
-Tap P or / to select target 5. Holding either for 150 ms, or pressing another
-key while holding it, enables cycling instead of selecting 5. Tapping ; does
-nothing; holding it enables tile cycling. Tile cycling follows cmux's split
-tree order, not focus history. Other rows retain their direct selection while
-a pinky is held. Unused keys on the cmux layer do nothing.
+P and / select target 5, with no separate hold action. The ; key does nothing.
+U/J/M cycle forward; I/K/, cycle backward. These replace the former direct
+selection of targets 2 and 3. Tile cycling follows cmux's split tree order,
+not focus history. Unused keys on the cmux layer do nothing.
 
-The three empty `*_held` layers track pinky holds. Conditional layers require
-both S's layer and the respective pinky layer, so releasing S disables the
-cycle overlays even if the pinky is still down. Existing layers 0–6 are unchanged.
+All navigation lives on one S-hold layer; there are no pinky hold behaviors,
+helper layers, or conditional layers. Existing layers 0–6 are unchanged.
 
 ### Mac setup
 
@@ -36,7 +34,7 @@ cmux reload-config
 ```
 
 The `*ByNumber` binding uses `1` to configure the whole number family, not
-just target 1. The keyboard sends Ctrl+1–5 for tabs and Cmd+1–5 for workspaces.
+just target 1. The keyboard sends Ctrl+1/4/5 for tabs and Cmd+1/4/5 for workspaces.
 It sends Cmd+Shift+[/] for tab cycling, Cmd+Ctrl+Option+Left/Right for tile
 cycling, and Cmd+Ctrl+[/] for workspace cycling. These are application
 shortcuts: use this layer with cmux active. It does not globally activate cmux.
@@ -55,9 +53,8 @@ keymap in Studio to use these new bindings rather than the saved overrides.
 ### Hardware smoke test
 
 1. Check ordinary typing (`s`, `ss`, `si`, `sj`) without unexpected navigation.
-2. Hold S for 200 ms, then select tabs and workspaces 1–5.
-3. Check P and / taps select 5; holds alone must not select 5.
-4. Check each pinky + its previous/next pair, including a fast pinky chord.
-5. Release a pinky while S remains held: direct selection should return.
-6. Release S first while a pinky remains held: letter keys should type normally.
-7. Check the original D/F/J/K/Q layers and modifier-taps outside the cmux layer.
+2. Hold S for 200 ms, then select tabs and workspaces 1, 4, and 5.
+3. Check U/J/M navigate forward and I/K/, backward without any pinky held.
+4. Check P and / select 5 and ; does nothing, with no extra hold actions.
+5. Release S: letter keys should type normally again.
+6. Check the original D/F/J/K/Q layers and modifier-taps outside the cmux layer.
